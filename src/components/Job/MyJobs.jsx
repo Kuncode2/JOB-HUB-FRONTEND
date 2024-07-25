@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FaCheck } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
@@ -17,7 +17,7 @@ const MyJobs = () => {
     const fetchJobs = async () => {
       try {
         const { data } = await axios.get(
-          "https://job-hub-backend-ub1c.onrender.com/api/v1/job/getmyjobs",
+          "http://localhost:4000/api/v1/job/getmyjobs",
           { withCredentials: true }
         );
         setMyJobs(data.myJobs);
@@ -47,7 +47,7 @@ const MyJobs = () => {
   const handleUpdateJob = async (jobId) => {
     const updatedJob = myJobs.find((job) => job._id === jobId);
     await axios
-      .put(`https://job-hub-backend-ub1c.onrender.com/api/v1/job/update/${jobId}`, updatedJob, {
+      .put(`http://localhost:4000/api/v1/job/update/${jobId}`, updatedJob, {
         withCredentials: true,
       })
       .then((res) => {
@@ -62,7 +62,7 @@ const MyJobs = () => {
   //Function For Deleting Job
   const handleDeleteJob = async (jobId) => {
     await axios
-      .delete(`https://job-hub-backend-ub1c.onrender.com/api/v1/job/delete/${jobId}`, {
+      .delete(`http://localhost:4000/api/v1/job/delete/${jobId}`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -344,7 +344,7 @@ const MyJobs = () => {
             </>
           ) : (
             <p>
-              You've not posted any job or may be you deleted all of your jobs!
+              You not posted any job or may be you deleted all of your jobs!
             </p>
           )}
         </div>
